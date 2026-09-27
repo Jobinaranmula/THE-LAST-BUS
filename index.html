@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>THE LAST BUS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="bus-screen">
+
+    <!-- Dark cinematic overlay -->
+    <div class="cinematic-overlay"></div>
+
+    <!-- Top title -->
+    <header class="top-title">
+      <div class="mini-line"></div>
+      <h1>THE LAST BUS</h1>
+      <p>KERALA JOURNEY EXPERIENCE</p>
+      <div class="mini-line"></div>
+    </header>
+
+    <!-- Route panel -->
+    <section class="route-panel">
+
+      <div class="route-heading">
+        <span class="route-icon">🚌</span>
+
+        <div>
+          <h2>യാത്ര തിരഞ്ഞെടുക്കുക</h2>
+          <p>SELECT YOUR ROUTE</p>
+        </div>
+      </div>
+
+      <div class="routes">
+
+        <button class="route-btn" data-route="പത്തനംതിട്ട">
+          <span class="radio"></span>
+          <span>പത്തനംതിട്ട</span>
+        </button>
+
+        <button class="route-btn" data-route="കോഴഞ്ചേരി">
+          <span class="radio"></span>
+          <span>കോഴഞ്ചേരി</span>
+        </button>
+
+        <button class="route-btn" data-route="ആറന്മുള">
+          <span class="radio"></span>
+          <span>ആറന്മുള</span>
+        </button>
+
+        <button class="route-btn" data-route="ചെങ്ങന്നൂർ">
+          <span class="radio"></span>
+          <span>ചെങ്ങന്നൂർ</span>
+        </button>
+
+      </div>
+
+      <div class="selected-route">
+        <span>ROUTE</span>
+        <strong id="selectedRoute">ഒന്നും തിരഞ്ഞെടുത്തിട്ടില്ല</strong>
+      </div>
+
+      <button class="enter-btn" id="enterBus" disabled>
+        <span class="bus-small">🚌</span>
+        ENTER BUS
+        <span class="arrow">›</span>
+      </button>
+
+    </section>
+
+    <!-- Bus name -->
+    <div class="bus-name">
+      സ്വാതി മോൾ
+    </div>
+
+    <!-- Bottom information -->
+    <div class="bottom-info">
+      <span>PRIVATE BUS EXPERIENCE</span>
+      <span>•</span>
+      <span>PATHANAMTHITTA</span>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
