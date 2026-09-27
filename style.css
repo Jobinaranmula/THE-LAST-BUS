@@ -1,0 +1,485 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Noto Sans Malayalam", sans-serif;
+  background: #050505;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* MAIN SCREEN */
+
+.bus-screen {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 600px;
+
+  background-image: url("assets/bus-front.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+/* Cinematic darkness */
+
+.cinematic-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.04) 45%,
+      rgba(0, 0, 0, 0.45) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.20) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* TOP TITLE */
+
+.top-title {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  text-align: center;
+  color: white;
+
+  z-index: 5;
+
+  text-shadow:
+    0 2px 15px rgba(0, 0, 0, 0.8);
+}
+
+.top-title h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 4vw, 58px);
+  letter-spacing: 8px;
+  font-weight: 700;
+}
+
+.top-title p {
+  margin-top: 5px;
+  font-size: 11px;
+  letter-spacing: 5px;
+  opacity: 0.85;
+}
+
+.mini-line {
+  width: 70px;
+  height: 2px;
+  margin: 10px auto;
+
+  background: #ff276f;
+  box-shadow: 0 0 12px #ff276f;
+}
+
+/* ROUTE PANEL */
+
+.route-panel {
+  position: absolute;
+
+  right: 4vw;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: min(410px, 38vw);
+
+  padding: 28px;
+
+  border-radius: 25px;
+
+  background: rgba(8, 8, 8, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.55),
+    inset 0 1px rgba(255, 255, 255, 0.12);
+
+  z-index: 10;
+}
+
+/* Heading */
+
+.route-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  color: white;
+
+  margin-bottom: 20px;
+}
+
+.route-icon {
+  font-size: 30px;
+}
+
+.route-heading h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.route-heading p {
+  margin-top: 3px;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  opacity: 0.6;
+}
+
+/* ROUTES */
+
+.routes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.route-btn {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 15px 17px;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.045);
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.route-btn:hover {
+  transform: translateX(-4px);
+
+  background: rgba(255, 39, 111, 0.15);
+
+  border-color: rgba(255, 39, 111, 0.6);
+}
+
+.route-btn.selected {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 39, 111, 0.85),
+    rgba(210, 20, 85, 0.65)
+  );
+
+  border-color: #ff4b85;
+
+  box-shadow:
+    0 8px 25px rgba(255, 39, 111, 0.25);
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255,255,255,0.65);
+
+  flex-shrink: 0;
+
+  position: relative;
+}
+
+.route-btn.selected .radio {
+  border-color: white;
+}
+
+.route-btn.selected .radio::after {
+  content: "";
+
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  left: 4px;
+  top: 4px;
+
+  border-radius: 50%;
+
+  background: white;
+}
+
+/* SELECTED ROUTE */
+
+.selected-route {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 18px;
+  padding: 11px 4px;
+
+  color: rgba(255,255,255,0.6);
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.selected-route strong {
+  color: white;
+
+  font-family: "Noto Sans Malayalam", sans-serif;
+  font-size: 12px;
+
+  letter-spacing: 0;
+}
+
+/* ENTER BUTTON */
+
+.enter-btn {
+  width: 100%;
+
+  margin-top: 8px;
+
+  padding: 17px;
+
+  border: none;
+  border-radius: 15px;
+
+  background: linear-gradient(
+    90deg,
+    #ff1766,
+    #d81458
+  );
+
+  color: white;
+
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  box-shadow:
+    0 12px 30px rgba(255, 23, 102, 0.30);
+
+  transition: 0.2s ease;
+}
+
+.enter-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 35px rgba(255, 23, 102, 0.45);
+}
+
+.enter-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.enter-btn:disabled {
+  background: rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.4);
+
+  box-shadow: none;
+
+  cursor: not-allowed;
+}
+
+.bus-small {
+  font-size: 20px;
+}
+
+.arrow {
+  font-size: 27px;
+  line-height: 10px;
+}
+
+/* BUS NAME */
+
+.bus-name {
+  position: absolute;
+
+  left: 5%;
+  bottom: 70px;
+
+  color: white;
+
+  font-size: clamp(25px, 3vw, 45px);
+  font-weight: 800;
+
+  text-shadow:
+    0 3px 15px black,
+    0 0 25px rgba(255, 0, 80, 0.5);
+
+  z-index: 5;
+}
+
+/* BOTTOM */
+
+.bottom-info {
+  position: absolute;
+
+  left: 50%;
+  bottom: 20px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 12px;
+
+  color: rgba(255,255,255,0.7);
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+
+  white-space: nowrap;
+
+  z-index: 5;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+  .route-panel {
+    width: min(390px, 48vw);
+    right: 3vw;
+  }
+
+  .top-title h1 {
+    letter-spacing: 5px;
+  }
+
+  .bus-name {
+    left: 3%;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+  .bus-screen {
+    min-height: 100dvh;
+
+    background-position: 42% center;
+  }
+
+  .cinematic-overlay {
+    background:
+      linear-gradient(
+        0deg,
+        rgba(0,0,0,0.78) 0%,
+        rgba(0,0,0,0.10) 55%,
+        rgba(0,0,0,0.35) 100%
+      );
+  }
+
+  .top-title {
+    top: 18px;
+    width: 100%;
+  }
+
+  .top-title h1 {
+    font-size: 26px;
+    letter-spacing: 4px;
+  }
+
+  .top-title p {
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .route-panel {
+    width: calc(100% - 28px);
+
+    left: 14px;
+    right: 14px;
+
+    top: auto;
+    bottom: 20px;
+
+    transform: none;
+
+    padding: 17px;
+
+    border-radius: 20px;
+  }
+
+  .route-heading {
+    margin-bottom: 12px;
+  }
+
+  .route-heading h2 {
+    font-size: 18px;
+  }
+
+  .route-btn {
+    padding: 11px 13px;
+    font-size: 15px;
+  }
+
+  .selected-route {
+    margin-top: 9px;
+  }
+
+  .enter-btn {
+    margin-top: 5px;
+    padding: 14px;
+  }
+
+  .bus-name {
+    display: none;
+  }
+
+  .bottom-info {
+    display: none;
+  }
+}
