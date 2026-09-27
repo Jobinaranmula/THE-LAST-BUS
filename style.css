@@ -26,8 +26,8 @@ body {
   min-height: 600px;
 
   background-image: url("bus-front.png");
-  background-size: cover;
-  background-position: center center;
+  background-size: 100% auto;
+background-position: center top;
   background-repeat: no-repeat;
 
   overflow: hidden;
