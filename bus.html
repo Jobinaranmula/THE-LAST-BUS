@@ -32,8 +32,11 @@ body {
   height: 100dvh;
   overflow: hidden;
 
+  background-color: #000;
   background-image: url("bus-interior.png");
-  background-size: cover;
+
+  /* ചെറിയ ZOOM OUT */
+  background-size: auto 96%;
   background-position: center center;
   background-repeat: no-repeat;
 
@@ -63,7 +66,7 @@ body {
   }
 }
 
-/* വളരെ subtle cinematic shade */
+/* cinematic shade */
 .bus-world::after {
   content: "";
   position: absolute;
@@ -138,7 +141,6 @@ body {
   z-index: 20;
 }
 
-/* ഓരോ button */
 .control-btn {
   min-width: 105px;
   height: 48px;
@@ -264,6 +266,11 @@ body {
 /* MOBILE */
 @media (max-width: 600px) {
 
+  .bus-world {
+    background-size: auto 96%;
+    background-position: center center;
+  }
+
   .trip-title {
     font-size: 9px;
     letter-spacing: 2px;
@@ -298,6 +305,10 @@ body {
 
 /* LANDSCAPE */
 @media (orientation: landscape) {
+
+  .bus-world {
+    background-size: auto 96%;
+  }
 
   .controls {
     right: 18px;
@@ -335,7 +346,6 @@ body {
     </button>
   </div>
 
-
   <!-- MP3 PLAYER -->
   <div class="player" id="player">
 
@@ -360,7 +370,6 @@ body {
            value="0.7">
 
   </div>
-
 
   <!-- CONTROLS -->
   <div class="controls">
@@ -396,14 +405,12 @@ body {
 
   </div>
 
-
   <!-- CREDIT -->
   <div class="credit">
     <span>Dedicated by രജിത്ത് ശശി ❣️</span>
   </div>
 
 </div>
-
 
 <!-- AUDIO -->
 <audio id="rainAudio"
@@ -428,7 +435,6 @@ body {
        preload="auto">
 </audio>
 
-
 <script>
 
 const rainAudio = document.getElementById("rainAudio");
@@ -443,12 +449,7 @@ const playBtn = document.getElementById("playBtn");
 
 const player = document.getElementById("player");
 
-
-/* ------------------------------------------------
-   AUDIO FILES
-   പിന്നീട് GitHub-ൽ MP3 upload ചെയ്ത ശേഷം
-   താഴെയുള്ള പേരുകൾ മാത്രം match ചെയ്താൽ മതി.
------------------------------------------------- */
+/* AUDIO FILES */
 
 rainAudio.src = "rain.mp3";
 natureAudio.src = "nature.mp3";
@@ -456,14 +457,14 @@ musicAudio.src = "travel.mp3";
 bellAudio.src = "bus-bell.mp3";
 hornAudio.src = "bus-horn.mp3";
 
-
 /* VOLUME */
+
 rainAudio.volume = 0.35;
 natureAudio.volume = 0.35;
 musicAudio.volume = 0.70;
 
-
 /* RAIN */
+
 function toggleRain() {
 
   if (rainAudio.paused) {
@@ -482,8 +483,8 @@ function toggleRain() {
   }
 }
 
-
 /* NATURE */
+
 function toggleNature() {
 
   if (natureAudio.paused) {
@@ -502,14 +503,14 @@ function toggleNature() {
   }
 }
 
-
 /* MP3 PLAYER */
+
 function showPlayer() {
   player.classList.toggle("show");
 }
 
-
 /* MUSIC */
+
 function toggleMusic() {
 
   if (musicAudio.paused) {
@@ -528,8 +529,8 @@ function toggleMusic() {
   }
 }
 
-
 /* MUSIC VOLUME */
+
 document.getElementById("musicVolume")
 .addEventListener("input", function() {
 
@@ -537,8 +538,8 @@ document.getElementById("musicVolume")
 
 });
 
-
 /* BUS BELL */
+
 function playBell() {
 
   bellAudio.currentTime = 0;
@@ -548,8 +549,8 @@ function playBell() {
 
 }
 
-
 /* HORN */
+
 function playHorn() {
 
   hornAudio.currentTime = 0;
@@ -559,8 +560,8 @@ function playHorn() {
 
 }
 
-
 /* FULLSCREEN */
+
 function toggleFullscreen() {
 
   if (!document.fullscreenElement) {
