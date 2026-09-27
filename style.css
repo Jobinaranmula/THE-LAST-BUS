@@ -17,7 +17,9 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* MAIN SCREEN */
+/* =========================
+   MAIN BUS SCREEN
+========================= */
 
 .bus-screen {
   position: relative;
@@ -26,14 +28,16 @@ body {
   min-height: 600px;
 
   background-image: url("bus-front.png");
-  background-size: 100% auto;
-background-position: center top;
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
 
   overflow: hidden;
 }
 
-/* Cinematic darkness */
+/* =========================
+   CINEMATIC OVERLAY
+========================= */
 
 .cinematic-overlay {
   position: absolute;
@@ -42,27 +46,31 @@ background-position: center top;
   background:
     linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.18) 0%,
-      rgba(0, 0, 0, 0.04) 45%,
-      rgba(0, 0, 0, 0.45) 100%
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.03) 45%,
+      rgba(0, 0, 0, 0.40) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.55) 0%,
-      transparent 40%,
-      rgba(0, 0, 0, 0.20) 100%
+      rgba(0, 0, 0, 0.50) 0%,
+      transparent 45%,
+      rgba(0, 0, 0, 0.18) 100%
     );
 
   pointer-events: none;
 }
 
-/* TOP TITLE */
+/* =========================
+   TOP TITLE
+========================= */
 
 .top-title {
   position: absolute;
-  top: 30px;
+  top: 24px;
   left: 50%;
   transform: translateX(-50%);
+
+  width: 100%;
 
   text-align: center;
   color: white;
@@ -70,33 +78,41 @@ background-position: center top;
   z-index: 5;
 
   text-shadow:
-    0 2px 15px rgba(0, 0, 0, 0.8);
+    0 2px 15px rgba(0, 0, 0, 0.85);
 }
 
 .top-title h1 {
   font-family: Georgia, serif;
   font-size: clamp(28px, 4vw, 58px);
-  letter-spacing: 8px;
+  letter-spacing: 7px;
   font-weight: 700;
 }
 
 .top-title p {
-  margin-top: 5px;
-  font-size: 11px;
-  letter-spacing: 5px;
-  opacity: 0.85;
+  margin-top: 4px;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+
+  opacity: 0.82;
 }
 
 .mini-line {
-  width: 70px;
+  width: 55px;
   height: 2px;
-  margin: 10px auto;
+
+  margin: 8px auto;
 
   background: #ff276f;
-  box-shadow: 0 0 12px #ff276f;
+
+  box-shadow:
+    0 0 12px rgba(255, 39, 111, 0.8);
 }
 
-/* ROUTE PANEL */
+/* =========================
+   ROUTE PANEL
+========================= */
 
 .route-panel {
   position: absolute;
@@ -106,43 +122,46 @@ background-position: center top;
 
   transform: translateY(-50%);
 
-  width: min(410px, 38vw);
+  width: min(400px, 38vw);
 
-  padding: 28px;
+  padding: 25px;
 
-  border-radius: 25px;
+  border-radius: 23px;
 
-  background: rgba(8, 8, 8, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(8, 8, 8, 0.70);
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
 
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.55),
-    inset 0 1px rgba(255, 255, 255, 0.12);
+    0 25px 70px rgba(0, 0, 0, 0.55),
+    inset 0 1px rgba(255, 255, 255, 0.10);
 
   z-index: 10;
 }
 
-/* Heading */
+/* =========================
+   ROUTE HEADING
+========================= */
 
 .route-heading {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 13px;
 
   color: white;
 
-  margin-bottom: 20px;
+  margin-bottom: 17px;
 }
 
 .route-icon {
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .route-heading h2 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -150,18 +169,20 @@ background-position: center top;
   margin-top: 3px;
 
   font-family: Arial, sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 2px;
 
   opacity: 0.6;
 }
 
-/* ROUTES */
+/* =========================
+   ROUTE BUTTONS
+========================= */
 
 .routes {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
 }
 
 .route-btn {
@@ -169,19 +190,19 @@ background-position: center top;
 
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 13px;
 
-  padding: 15px 17px;
+  padding: 13px 15px;
 
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 13px;
 
-  background: rgba(255,255,255,0.045);
+  background: rgba(255, 255, 255, 0.045);
 
   color: white;
 
   font-family: inherit;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
 
   cursor: pointer;
@@ -194,33 +215,35 @@ background-position: center top;
 }
 
 .route-btn:hover {
-  transform: translateX(-4px);
+  transform: translateX(-3px);
 
-  background: rgba(255, 39, 111, 0.15);
+  background: rgba(255, 39, 111, 0.14);
 
-  border-color: rgba(255, 39, 111, 0.6);
+  border-color: rgba(255, 39, 111, 0.55);
 }
 
 .route-btn.selected {
   background: linear-gradient(
     90deg,
-    rgba(255, 39, 111, 0.85),
-    rgba(210, 20, 85, 0.65)
+    rgba(255, 39, 111, 0.88),
+    rgba(210, 20, 85, 0.68)
   );
 
   border-color: #ff4b85;
 
   box-shadow:
-    0 8px 25px rgba(255, 39, 111, 0.25);
+    0 8px 25px rgba(255, 39, 111, 0.24);
 }
 
+/* RADIO */
+
 .radio {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 
   border-radius: 50%;
 
-  border: 2px solid rgba(255,255,255,0.65);
+  border: 2px solid rgba(255, 255, 255, 0.65);
 
   flex-shrink: 0;
 
@@ -236,8 +259,8 @@ background-position: center top;
 
   position: absolute;
 
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 
   left: 4px;
   top: 4px;
@@ -247,20 +270,22 @@ background-position: center top;
   background: white;
 }
 
-/* SELECTED ROUTE */
+/* =========================
+   SELECTED ROUTE
+========================= */
 
 .selected-route {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  margin-top: 18px;
-  padding: 11px 4px;
+  margin-top: 15px;
+  padding: 9px 3px;
 
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.55);
 
   font-family: Arial, sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 1.5px;
 }
 
@@ -273,17 +298,19 @@ background-position: center top;
   letter-spacing: 0;
 }
 
-/* ENTER BUTTON */
+/* =========================
+   ENTER BUS
+========================= */
 
 .enter-btn {
   width: 100%;
 
-  margin-top: 8px;
+  margin-top: 7px;
 
-  padding: 17px;
+  padding: 15px;
 
   border: none;
-  border-radius: 15px;
+  border-radius: 14px;
 
   background: linear-gradient(
     90deg,
@@ -294,8 +321,9 @@ background-position: center top;
   color: white;
 
   font-family: Arial, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
+
   letter-spacing: 1px;
 
   cursor: pointer;
@@ -303,10 +331,11 @@ background-position: center top;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+
+  gap: 10px;
 
   box-shadow:
-    0 12px 30px rgba(255, 23, 102, 0.30);
+    0 12px 30px rgba(255, 23, 102, 0.28);
 
   transition: 0.2s ease;
 }
@@ -315,7 +344,7 @@ background-position: center top;
   transform: translateY(-2px);
 
   box-shadow:
-    0 16px 35px rgba(255, 23, 102, 0.45);
+    0 15px 35px rgba(255, 23, 102, 0.42);
 }
 
 .enter-btn:active:not(:disabled) {
@@ -323,8 +352,9 @@ background-position: center top;
 }
 
 .enter-btn:disabled {
-  background: rgba(255,255,255,0.16);
-  color: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.15);
+
+  color: rgba(255, 255, 255, 0.4);
 
   box-shadow: none;
 
@@ -332,51 +362,58 @@ background-position: center top;
 }
 
 .bus-small {
-  font-size: 20px;
+  font-size: 19px;
 }
 
 .arrow {
-  font-size: 27px;
+  font-size: 25px;
   line-height: 10px;
 }
 
-/* BUS NAME */
+/* =========================
+   BUS NAME
+========================= */
 
 .bus-name {
   position: absolute;
 
   left: 5%;
-  bottom: 70px;
+  bottom: 65px;
 
   color: white;
 
-  font-size: clamp(25px, 3vw, 45px);
+  font-size: clamp(23px, 3vw, 42px);
+
   font-weight: 800;
 
   text-shadow:
     0 3px 15px black,
-    0 0 25px rgba(255, 0, 80, 0.5);
+    0 0 25px rgba(255, 0, 80, 0.45);
 
   z-index: 5;
 }
 
-/* BOTTOM */
+/* =========================
+   BOTTOM INFO
+========================= */
 
 .bottom-info {
   position: absolute;
 
   left: 50%;
-  bottom: 20px;
+  bottom: 17px;
 
   transform: translateX(-50%);
 
   display: flex;
-  gap: 12px;
+  gap: 11px;
 
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.68);
 
   font-family: Arial, sans-serif;
-  font-size: 9px;
+
+  font-size: 8px;
+
   letter-spacing: 2px;
 
   white-space: nowrap;
@@ -384,12 +421,14 @@ background-position: center top;
   z-index: 5;
 }
 
-/* TABLET */
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 900px) {
 
   .route-panel {
-    width: min(390px, 48vw);
+    width: min(390px, 44vw);
     right: 3vw;
   }
 
@@ -402,33 +441,40 @@ background-position: center top;
   }
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 650px) {
 
   .bus-screen {
+    width: 100%;
+    height: 100dvh;
+
     min-height: 100dvh;
 
-    background-position: 42% center;
+    background-size: cover;
+    background-position: center center;
   }
 
   .cinematic-overlay {
     background:
       linear-gradient(
         0deg,
-        rgba(0,0,0,0.78) 0%,
-        rgba(0,0,0,0.10) 55%,
-        rgba(0,0,0,0.35) 100%
+        rgba(0, 0, 0, 0.70) 0%,
+        rgba(0, 0, 0, 0.08) 55%,
+        rgba(0, 0, 0, 0.30) 100%
       );
   }
 
+  /* TITLE */
+
   .top-title {
-    top: 18px;
-    width: 100%;
+    top: 17px;
   }
 
   .top-title h1 {
-    font-size: 26px;
+    font-size: 27px;
     letter-spacing: 4px;
   }
 
@@ -437,18 +483,26 @@ background-position: center top;
     letter-spacing: 3px;
   }
 
-  .route-panel {
-    width: calc(100% - 28px);
+  .mini-line {
+    width: 48px;
+    margin: 7px auto;
+  }
 
-    left: 14px;
-    right: 14px;
+  /* ROUTE PANEL */
+
+  .route-panel {
+
+    width: calc(100% - 32px);
+
+    left: 16px;
+    right: 16px;
 
     top: auto;
-    bottom: 20px;
+    bottom: 18px;
 
     transform: none;
 
-    padding: 17px;
+    padding: 16px;
 
     border-radius: 20px;
   }
@@ -457,27 +511,76 @@ background-position: center top;
     margin-bottom: 12px;
   }
 
+  .route-icon {
+    font-size: 25px;
+  }
+
   .route-heading h2 {
     font-size: 18px;
   }
 
-  .route-btn {
-    padding: 11px 13px;
-    font-size: 15px;
+  .route-heading p {
+    font-size: 8px;
   }
 
-  .selected-route {
-    margin-top: 9px;
+  /* ROUTES */
+
+  .routes {
+    gap: 8px;
   }
+
+  .route-btn {
+    padding: 11px 13px;
+
+    font-size: 15px;
+
+    border-radius: 12px;
+  }
+
+  .radio {
+    width: 18px;
+    height: 18px;
+  }
+
+  .route-btn.selected .radio::after {
+    width: 6px;
+    height: 6px;
+
+    left: 4px;
+    top: 4px;
+  }
+
+  /* SELECTED */
+
+  .selected-route {
+    margin-top: 8px;
+
+    padding: 7px 3px;
+  }
+
+  .selected-route strong {
+    font-size: 11px;
+  }
+
+  /* ENTER */
 
   .enter-btn {
     margin-top: 5px;
+
     padding: 14px;
+
+    border-radius: 13px;
+
+    font-size: 15px;
   }
+
+  /* BUS NAME */
 
   .bus-name {
     display: none;
   }
+
+  /* BOTTOM */
 
   .bottom-info {
     display: none;
