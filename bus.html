@@ -35,7 +35,6 @@ body {
   background-color: #000;
   background-image: url("bus-interior.png");
 
-  /* ചെറിയ ZOOM OUT */
   background-size: auto 96%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -43,7 +42,7 @@ body {
   animation: busTravel 1.8s ease-in-out infinite;
 }
 
-/* ചെറിയ bus movement */
+/* BUS MOVEMENT */
 @keyframes busTravel {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg);
@@ -66,7 +65,7 @@ body {
   }
 }
 
-/* cinematic shade */
+/* CINEMATIC SHADE */
 .bus-world::after {
   content: "";
   position: absolute;
@@ -186,18 +185,18 @@ body {
 
   transform: translateX(-50%);
 
-  width: min(90%, 500px);
+  width: min(92%, 560px);
 
-  padding: 12px 16px;
+  padding: 12px 14px;
 
   display: none;
 
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 
   color: white;
 
-  background: rgba(10,10,10,0.32);
+  background: rgba(10,10,10,0.38);
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 22px;
 
@@ -215,18 +214,28 @@ body {
   width: 44px;
   height: 44px;
 
+  flex: 0 0 44px;
+
   border: 0;
   border-radius: 50%;
 
   background: rgba(255,255,255,0.22);
   color: white;
 
-  font-size: 18px;
+  font-size: 17px;
+
+  cursor: pointer;
+}
+
+.play-btn:active {
+  transform: scale(0.92);
 }
 
 .song-info {
   flex: 1;
   min-width: 0;
+
+  padding: 0 4px;
 }
 
 .song-name {
@@ -236,8 +245,14 @@ body {
   text-overflow: ellipsis;
 }
 
+.song-number {
+  font-size: 10px;
+  opacity: 0.65;
+  margin-top: 3px;
+}
+
 .volume {
-  width: 85px;
+  width: 75px;
 }
 
 /* CREDIT */
@@ -295,7 +310,23 @@ body {
 
   .player {
     bottom: 142px;
-    width: 92%;
+    width: 94%;
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .play-btn {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .song-name {
+    font-size: 13px;
+  }
+
+  .volume {
+    width: 62px;
   }
 
   .credit {
@@ -335,6 +366,7 @@ body {
 
   <!-- TOP -->
   <div class="top-bar">
+
     <div class="trip-title">
       THE LAST BUS · KERALA JOURNEY
     </div>
@@ -344,32 +376,61 @@ body {
             aria-label="Fullscreen">
       ⛶
     </button>
+
   </div>
+
 
   <!-- MP3 PLAYER -->
   <div class="player" id="player">
 
+    <!-- PREVIOUS -->
+    <button class="play-btn"
+            onclick="prevSong()"
+            aria-label="Previous">
+      ⏮
+    </button>
+
+    <!-- PLAY / PAUSE -->
     <button class="play-btn"
             id="playBtn"
-            onclick="toggleMusic()">
+            onclick="toggleMusic()"
+            aria-label="Play">
       ▶
     </button>
 
+    <!-- SONG INFO -->
     <div class="song-info">
-      <div class="song-name" id="songName">
-        യാത്രാ സംഗീതം
+
+      <div class="song-name"
+           id="songName">
+        പാട്ട് 1
       </div>
+
+      <div class="song-number"
+           id="songNumber">
+        1 / 7
+      </div>
+
     </div>
 
+    <!-- NEXT -->
+    <button class="play-btn"
+            onclick="nextSong()"
+            aria-label="Next">
+      ⏭
+    </button>
+
+    <!-- VOLUME -->
     <input class="volume"
            id="musicVolume"
            type="range"
            min="0"
            max="1"
            step="0.01"
-           value="0.7">
+           value="0.70">
 
   </div>
+
 
   <!-- CONTROLS -->
   <div class="controls">
@@ -405,6 +466,7 @@ body {
 
   </div>
 
+
   <!-- CREDIT -->
   <div class="credit">
     <span>Dedicated by രജിത്ത് ശശി ❣️</span>
@@ -412,7 +474,9 @@ body {
 
 </div>
 
+
 <!-- AUDIO -->
+
 <audio id="rainAudio"
        loop
        preload="auto">
@@ -435,33 +499,232 @@ body {
        preload="auto">
 </audio>
 
+
 <script>
 
-const rainAudio = document.getElementById("rainAudio");
-const natureAudio = document.getElementById("natureAudio");
-const musicAudio = document.getElementById("musicAudio");
-const bellAudio = document.getElementById("bellAudio");
-const hornAudio = document.getElementById("hornAudio");
+/* AUDIO ELEMENTS */
 
-const rainBtn = document.getElementById("rainBtn");
-const natureBtn = document.getElementById("natureBtn");
-const playBtn = document.getElementById("playBtn");
+const rainAudio =
+  document.getElementById("rainAudio");
 
-const player = document.getElementById("player");
+const natureAudio =
+  document.getElementById("natureAudio");
+
+const musicAudio =
+  document.getElementById("musicAudio");
+
+const bellAudio =
+  document.getElementById("bellAudio");
+
+const hornAudio =
+  document.getElementById("hornAudio");
+
+
+/* BUTTONS */
+
+const rainBtn =
+  document.getElementById("rainBtn");
+
+const natureBtn =
+  document.getElementById("natureBtn");
+
+const playBtn =
+  document.getElementById("playBtn");
+
+const player =
+  document.getElementById("player");
+
 
 /* AUDIO FILES */
 
 rainAudio.src = "rain.mp3";
+
 natureAudio.src = "nature.mp3";
-musicAudio.src = "travel.mp3";
+
 bellAudio.src = "bus-bell.mp3";
+
 hornAudio.src = "bus-horn.mp3";
+
+
+/* 7 SONG PLAYLIST */
+
+const songs = [
+
+  {
+    file: "song1.mp3",
+    name: "പാട്ട് 1"
+  },
+
+  {
+    file: "song2.mp3",
+    name: "പാട്ട് 2"
+  },
+
+  {
+    file: "song3.mp3",
+    name: "പാട്ട് 3"
+  },
+
+  {
+    file: "song4.mp3",
+    name: "പാട്ട് 4"
+  },
+
+  {
+    file: "song5.mp3",
+    name: "പാട്ട് 5"
+  },
+
+  {
+    file: "song6.mp3",
+    name: "പാട്ട് 6"
+  },
+
+  {
+    file: "song7.mp3",
+    name: "പാട്ട് 7"
+  }
+
+];
+
+
+let currentSong = 0;
+
 
 /* VOLUME */
 
 rainAudio.volume = 0.35;
+
 natureAudio.volume = 0.35;
+
 musicAudio.volume = 0.70;
+
+
+/* LOAD SONG */
+
+function loadSong(index) {
+
+  currentSong = index;
+
+  musicAudio.src =
+    songs[currentSong].file;
+
+  document.getElementById("songName")
+    .textContent =
+    songs[currentSong].name;
+
+  document.getElementById("songNumber")
+    .textContent =
+    (currentSong + 1) + " / " + songs.length;
+
+}
+
+
+/* SHOW PLAYER */
+
+function showPlayer() {
+
+  player.classList.toggle("show");
+
+}
+
+
+/* PLAY / PAUSE */
+
+function toggleMusic() {
+
+  if (musicAudio.paused) {
+
+    musicAudio.play()
+      .then(() => {
+
+        playBtn.textContent = "⏸";
+
+      })
+      .catch(() => {});
+
+  } else {
+
+    musicAudio.pause();
+
+    playBtn.textContent = "▶";
+
+  }
+
+}
+
+
+/* NEXT SONG */
+
+function nextSong() {
+
+  currentSong++;
+
+  if (currentSong >= songs.length) {
+
+    currentSong = 0;
+
+  }
+
+  loadSong(currentSong);
+
+  musicAudio.play()
+    .then(() => {
+
+      playBtn.textContent = "⏸";
+
+    })
+    .catch(() => {});
+
+}
+
+
+/* PREVIOUS SONG */
+
+function prevSong() {
+
+  currentSong--;
+
+  if (currentSong < 0) {
+
+    currentSong = songs.length - 1;
+
+  }
+
+  loadSong(currentSong);
+
+  musicAudio.play()
+    .then(() => {
+
+      playBtn.textContent = "⏸";
+
+    })
+    .catch(() => {});
+
+}
+
+
+/* AUTO NEXT */
+
+musicAudio.addEventListener(
+  "ended",
+  function() {
+
+    nextSong();
+
+  }
+);
+
+
+/* MUSIC VOLUME */
+
+document.getElementById("musicVolume")
+  .addEventListener("input", function() {
+
+    musicAudio.volume = this.value;
+
+  });
+
 
 /* RAIN */
 
@@ -471,17 +734,22 @@ function toggleRain() {
 
     rainAudio.play()
       .then(() => {
+
         rainBtn.classList.add("active");
+
       })
       .catch(() => {});
 
   } else {
 
     rainAudio.pause();
+
     rainBtn.classList.remove("active");
 
   }
+
 }
+
 
 /* NATURE */
 
@@ -491,52 +759,22 @@ function toggleNature() {
 
     natureAudio.play()
       .then(() => {
+
         natureBtn.classList.add("active");
+
       })
       .catch(() => {});
 
   } else {
 
     natureAudio.pause();
+
     natureBtn.classList.remove("active");
 
   }
+
 }
 
-/* MP3 PLAYER */
-
-function showPlayer() {
-  player.classList.toggle("show");
-}
-
-/* MUSIC */
-
-function toggleMusic() {
-
-  if (musicAudio.paused) {
-
-    musicAudio.play()
-      .then(() => {
-        playBtn.textContent = "⏸";
-      })
-      .catch(() => {});
-
-  } else {
-
-    musicAudio.pause();
-    playBtn.textContent = "▶";
-
-  }
-}
-
-/* MUSIC VOLUME */
-
-document.getElementById("musicVolume")
-.addEventListener("input", function() {
-
-  musicAudio.volume = this.value;
-
-});
 
 /* BUS BELL */
 
@@ -549,7 +787,8 @@ function playBell() {
 
 }
 
-/* HORN */
+
+/* BUS HORN */
 
 function playHorn() {
 
@@ -559,6 +798,7 @@ function playHorn() {
     .catch(() => {});
 
 }
+
 
 /* FULLSCREEN */
 
@@ -577,6 +817,11 @@ function toggleFullscreen() {
   }
 
 }
+
+
+/* FIRST SONG */
+
+loadSong(0);
 
 </script>
 
